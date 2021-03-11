@@ -1,0 +1,80 @@
+button:disabled {
+    display: none;
+  }
+
+  /* SKO works
+  :host ::ng-deep {
+    --ck-color-toolbar-background: green; 
+    --ck-font-size-base: 24px;
+    }
+    */
+
+
+
+    :host ::ng-deep .ck-content {
+      padding: calc( 2 * var(--ck-spacing-large) );
+      background: var(--ck-color-base-foreground);
+  
+      /* Make it possible to scroll the "page" of the edited content. */
+      overflow-y: scroll;
+  }
+
+
+/* :host ::ng-deep .ck-editor__editable_inline { */
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 500px !important;
+  max-height: 500px !important;
+  min-width: 500px !important;
+  /*max-width: 500px !important;*/
+
+
+  border: 5px solid var(--ck-color-base-border);
+  border-radius: var(--ck-border-radius);
+
+
+   /* This element is a flex container for easier rendering. */
+   display: flex;
+   flex-flow: column nowrap;
+
+    background-color: green;
+}
+
+:host ::ng-deep .ck-editor__editable{
+  /* Set the dimensions of the "page". */
+
+  
+  width: 90%;
+  min-height: 21cm;
+
+  /* Keep the "page" off the boundaries of the container. */
+  padding: 1cm 2cm 2cm;
+
+  border: 1px hsl( 0,0%,82.7% ) solid;
+  border-radius: var(--ck-border-radius);
+  background: red;
+  background-color: blue;
+
+  /* The "page" should cast a slight shadow (3D illusion). */
+  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
+
+  /* Center the "page". */
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+/*:host ::ng-deep .ck-content{
+  background: yellow;
+}*/
+
+
+
+
+

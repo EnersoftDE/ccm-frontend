@@ -1,0 +1,19 @@
+button:disabled {
+    display: none;
+  }
+
+ 
+  :host ::ng-deep .ck-editor__editable_inline {
+    min-height: 500px !important;
+    max-height: 500px !important;
+    min-width: 500px !important;
+  }
+    
+
+
+
+
+
+
+
+

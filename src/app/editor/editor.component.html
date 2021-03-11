@@ -1,0 +1,43 @@
+<div>
+  <p style="text-align:center;">Template Editor</p>
+</div>
+<!--div class="container">
+  <button (click)="onLoadTemplate()" class="btn btn-outline-primary btn-sm">Template laden</button>
+</div-->
+<div class="container">
+  <form #articleForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-group mb-3">
+      <input class="form-control" type="text" placeholder="Template Name" id="title" required
+        [(ngModel)]="article.title" name="name">
+      <div class="input-group-append">
+        <button (click)="onLoadTemplate()" class="btn btn-outline-secondary btn-sm" type="button">Template
+          laden</button>
+      </div>
+    </div>
+
+    <!--ckeditor
+      [config]="editorConfig" [editor]="Editor"
+      required [(ngModel)]="article.text"
+      data="" name="text"
+  ></ckeditor-->
+    <!-- SKO WORKS ckeditor [config]="editorConfig" [editor]="Editor" required [(ngModel)]="article.text" data="<p>Hello</p>" name="text"
+      (ready)="onReady($event)"></ckeditor -->
+
+    <!--div class="document-editor__editable-container"-->
+
+
+
+
+    <ckeditor #editor [editor]="Editor" [config]="editorConfig" required [(ngModel)]="article.text" [data]="data"
+      name="text" (ready)="onReady($event)"></ckeditor>
+    <!--/div-->
+
+    <!--button
+        type="submit" class="btn btn-primary"
+        [disabled]="articleForm.invalid"
+      >Submit</button-->
+    <button type="submit" class="btn btn-primary">speichern</button>
+
+  </form>
+
+</div>
