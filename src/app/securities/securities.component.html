@@ -1,0 +1,59 @@
+<div>
+    <p style="text-align:center;">Bürgschaften</p>
+</div>
+<div class="container">
+    <form #securitiesForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" placeholder="Bürgschafts-Template (Single Point of Truth)" id="SPoT"
+                required [(ngModel)]="securityname" name="name">
+            <div class="input-group-append">
+                <button (click)="onLoadSPoT()" class="btn btn-outline-secondary btn-sm" type="button">laden</button>
+            </div>
+        </div>
+        <br />
+
+        <!--button type="submit" class="btn btn-primary" [disabled]="nonSelected()">Bürgschaft
+            erstellen</button -->
+
+    </form>
+
+    <form [hidden]="nonSelected()">
+
+        <div class="form-group">
+            <!--label for="inputAddress2">Address 2</label-->
+            <input type="text" [(ngModel)]="param1" name="param1" class="form-control" id="p1" placeholder="param 1">
+        </div>
+        <div class="form-group">
+            <!--label for="inputAddress">Address</label-->
+            <input type="text" [(ngModel)]="param2" name="param2" class="form-control" id="p2" placeholder="param 2">
+        </div>
+        <div class="form-group">
+            <!--label for="inputAddress2">Address 2</label-->
+            <input type="text" [(ngModel)]="param3" name="param3" class="form-control" id="p3" placeholder="param 3">
+        </div>
+        <div class="form-group">
+            <!--label for="inputAddress2">Address 2</label-->
+            <input type="text" [(ngModel)]="param4" name="param4" class="form-control" id="p4" placeholder="param 4">
+        </div>
+        <div class="form-group">
+            <!--label for="inputAddress2">Address 2</label-->
+            <input type="text" [(ngModel)]="param5" name="param5" class="form-control" id="p5" placeholder="param 5">
+        </div>
+        <div class="form-group">
+            <!--label for="inputAddress2">Address 2</label-->
+            <input type="text" [(ngModel)]="param6" name="param6" class="form-control" id="p6" placeholder="param 6">
+        </div>
+
+        <select id="mandant" class="form-control" [(ngModel)]="mandant" name="mandant" id="mdt">
+            <option selected>Mandant...</option>
+            <option>RV</option>
+            <option>VHV</option>
+        </select>
+        <br>
+
+        <!--button (click)="onSubmit()" type="submit" class="btn btn-primary">Sign in</button -->
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary" [disabled]="nonSelected()">Bürgschaft
+            erstellen</button>
+    </form>
+
+</div>

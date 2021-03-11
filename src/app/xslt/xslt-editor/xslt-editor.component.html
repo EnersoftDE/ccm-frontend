@@ -1,0 +1,25 @@
+<p>xslt-editor works!</p>
+<ul>
+    <li *ngFor="let file of files">
+        <!--mat-progress-bar [value]="file.progress"></mat-progress-bar-->
+        <span id="file-label">
+
+        </span>
+    </li>
+</ul>
+<button mat-button color="warn" (click)="onClick()">
+    Upload
+</button>
+<!--input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
+    style="display:none;" /-->
+<input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="*.txt"
+    style="display:none;" />
+
+<div class="Block">
+    <label id="lbl">Code </label>
+    <input type='file' (change)="fileChanged($event)">
+
+</div>
+
+<!--ckeditor #editor [editor]="Editor" [config]="editorConfig" required [(ngModel)]="xsltStylesheet.xsltStylesheet"
+    [data]="data" name="text" (ready)="onReady($event)"></ckeditor-->

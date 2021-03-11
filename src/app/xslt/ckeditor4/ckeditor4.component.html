@@ -1,0 +1,198 @@
+<div>
+    <p style="text-align:center;">XSLT-Stylesheet Editor</p>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- LEFT SEARCH PANEL -->
+        <div class="col-3 groove">
+            <!-- XSLT PANEL-->
+            <form class="form-inline">
+                <div class="form-group">
+                    <!--input type="search" class="form-control" placeholder="search string" #search-->
+                    <input type="hidden" class="form-control" placeholder="search string" #search>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="doXSLTSearch(search.value)">Templates anzeigen</button>
+                </div>
+                <div style="margin-left: 80px;">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="doXSLTDelete()"
+                        [disabled]="nonXSLTSelected()">X</button>
+
+                </div>
+            </form>
+            <hr />
+            <ul class=" paginationList">
+                <li *ngFor="let stylesheet of pagedXSLTStylesheets"
+                    [class.selected]="stylesheet === selectedXSLTStylesheet" (click)="onXSLTSelect(stylesheet)">
+                    <!--span class="badge">{{stylesheet.id}}</span --> {{stylesheet.name}}
+                </li>
+            </ul>
+
+            <div class="container">
+                <!--div class="text-center"-->
+                <!-- pager -->
+                <ul *ngIf="xsltPager.pages && xsltPager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:xsltPager.currentPage === 1}">
+                        <a (click)="setXSLTPage(1)">&lt;&lt;</a>
+                    </li>
+                    <li [ngClass]="{disabled:xsltPager.currentPage === 1}">
+                        <a (click)="setXSLTPage(xsltPager.currentPage - 1)">&lt;</a>
+                    </li>
+                    <li *ngFor="let page of xsltPager.pages" [ngClass]="{selected:xsltPager.currentPage === page}">
+                        <a (click)="setXSLTPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:xsltPager.currentPage === xsltPager.totalPages}">
+                        <a (click)="setXSLTPage(xsltPager.currentPage + 1)">&gt;</a>
+                    </li>
+                    <li [ngClass]="{disabled:xsltPager.currentPage === xsltPager.totalPages}">
+                        <a (click)="setXSLTPage(xsltPager.totalPages)">&gt;&gt;</a>
+                    </li>
+                </ul>
+                <!--/div-->
+            </div>
+
+            <!-- XML PANEL-->
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" placeholder="search string" #search>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="doXMLSearch(search.value)">Business
+                        Daten anzeigen</button>
+                </div>
+                <div style="margin-left: 50px;">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="doXMLDelete()"
+                        [disabled]="nonXMLSelected()">X</button>
+
+                </div>
+            </form>
+            <hr />
+            <ul class="paginationList">
+                <!-- ul class="list-group" -->
+                <li *ngFor="let xmlBusinessData of pagedXMLBusinessData"
+                    [class.selected]="xmlBusinessData === selectedXMLBusinessData"
+                    (click)="onXMLSelect(xmlBusinessData)">
+                    <!--li class="list-group-item" *ngFor="let stylesheet of allXSLTStylesheets"
+                    [class.selected]="stylesheet === selectedXSLTStylesheet" (click)="onSelect(stylesheet)" -->
+                    <!--span class="badge">{{stylesheet.id}}</span --> {{xmlBusinessData.name}}
+                </li>
+            </ul>
+            <div class="container">
+                <div class="text-center">
+                    <!-- pager -->
+                    <ul *ngIf="xmlBusinessDataPager.pages && xmlBusinessDataPager.pages.length" class="pagination">
+                        <li [ngClass]="{disabled:xmlBusinessDataPager.currentPage === 1}">
+                            <a (click)="setXMLBusinessDataPage(1)">&lt;&lt;</a>
+                        </li>
+                        <li [ngClass]="{disabled:xmlBusinessDataPager.currentPage === 1}">
+                            <a (click)="setXMLBusinessDataPage(xmlBusinessDataPager.currentPage - 1)">&lt;</a>
+                        </li>
+                        <li *ngFor="let page of xmlBusinessDataPager.pages"
+                            [ngClass]="{selected:xmlBusinessDataPager.currentPage === page}">
+                            <a (click)="setXMLBusinessDataPage(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:xmlBusinessDataPager.currentPage === xmlBusinessDataPager.totalPages}">
+                            <a (click)="setXMLBusinessDataPage(xmlBusinessDataPager.currentPage + 1)">&gt;</a>
+                        </li>
+                        <li [ngClass]="{disabled:xmlBusinessDataPager.currentPage === xmlBusinessDataPager.totalPages}">
+                            <a (click)="setXMLBusinessDataPage(xmlBusinessDataPager.totalPages)">&gt;&gt;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- EDITOR Panel-->
+        <div class="col-9 groove">
+            <form #articleForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" placeholder="XSLT-Stylesheet Name" id="title" required
+                        [(ngModel)]="xsltStylesheet.name" name="name">
+                    <div class="input-group-append">
+                        <button (click)="onLoadTemplateFromServer()" class="btn btn-outline-secondary btn-sm"
+                            type="button">XSLT von Server laden</button>
+                    </div>
+                </div>
+                <div class="float-right">
+
+                    <input type="file" #xsltFileUpload id="xsltFileUpload" name="xsltFileUpload" accept=".xsl"
+                        style="display:none" />
+                    <div class="input-group-append">
+                        <button (click)="onLoadXSLTFiles()" class="btn btn-outline-secondary btn-sm"
+                            style="float: right;" type="button">XSLT
+                            vom PC laden</button>
+
+                    </div>
+
+                </div>
+                <br>
+                <br>
+
+                <!-- alter Datei auswaehlen Button 
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <input type='file' (change)="fileChanged($event)">
+                    </div>
+                </div>
+                -->
+
+
+                <ckeditor #editor [(ngModel)]="xsltStylesheet.xsltStylesheet" id="description" name="description">
+                </ckeditor>
+
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" placeholder="XSLT-Stylesheet Name" id="name" required
+                        [(ngModel)]="xsltStylesheet.name" name="name">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" [disabled]="nonXSLTLoaded()">speichern</button>
+                    </div> 
+                </div>
+            </form>
+
+
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <button (click)="onLoadXML()" class="btn btn-outline-secondary btn-sm" type="button">XML
+                        hochladen </button>
+                    <input type="file" #xmlFileUpload id="xmlFileUpload" name="xmlFileUpload" multiple="multiple"
+                        accept=".xml" style="display:none;" />
+
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <button (click)="onLoadResourceFile()" class="btn btn-outline-secondary btn-sm"
+                        type="button">Ressource
+                        hochladen </button>
+                    <input type="file" #resourceFileUpload id="resourceFileUpload" name="resourceFileUpload"
+                        multiple="multiple" accept=".jpg,.gif" style="display:none;" />
+
+                </div>
+            </div>
+            <form #articleForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="input-group mb-3">
+
+                    <div class="input-group-append">
+                        <button (click)="onRenderTemplate()" class="btn btn-outline-secondary btn-sm"
+                            type="button">Dokument
+                            rendern</button>
+                    </div>
+                </div>
+            </form>
+            <!--div class="input-group mb-3">
+                <div class="input-group-append"-->
+            <div class="float-right">
+                <button (click)=" onRenderTestcases()" class="btn btn-outline-secondary btn-sm" type="button">
+                    Testcases
+                    rendern</button>
+                <input type="file" #testcasesFileUpload id="testcasesFileUpload" name="testcasesFileUpload"
+                    accept=".xlsx" style="display:none;" />
+
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+</div>
