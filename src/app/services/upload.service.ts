@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { XsltEditorComponent } from '../xslt/xslt-editor/xslt-editor.component';
 import { XSLTSTYLESHEETS } from '../shared/mock-xsltstylesheets';
 import { IXMLBusinessData } from '../models/IXMLBusinessData';
+import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ import { IXMLBusinessData } from '../models/IXMLBusinessData';
 export class UploadService {
 
   localServer = 'http://localhost:5000';
-  awsServer = 'http://Enersoftccmbase-env.eba-2zv5czsw.us-east-1.elasticbeanstalk.com';
   server: string;
 
-  constructor(private httpClient: HttpClient) {
-    this.server = this.awsServer;
+  constructor(private httpClient: HttpClient, private config: ConfigService) {
+    this.server = this.config.getValues().restPathRoot;
+    console.log("SecuritiesServices is using " + this.server);
   }
 
 

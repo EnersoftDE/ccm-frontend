@@ -1,4 +1,4 @@
 {
   "version": "docker-version",
-  "restPathRoot": "http://localhost:5000/"
+  "restPathRoot": "http://enersoftccmbase-env.eba-2zv5czsw.us-east-1.elasticbeanstalk.com"
 }

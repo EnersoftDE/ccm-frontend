@@ -15,13 +15,12 @@ import { ConfigService } from '../config/config.service';
 export class TemplateServices {
 
     localServer = 'http://localhost:5000';
-    awsServer = 'http://Enersoftccmbase-env.eba-2zv5czsw.us-east-1.elasticbeanstalk.com';
     server: string;
 
     constructor(private http: HttpClient, private config: ConfigService) {
-        this.server = this.awsServer;
+
         this.server = this.config.getValues().restPathRoot;
-        console.log("TemplateService is using "+this.server);
+        console.log("TemplateService is using " + this.server);
 
     }
 

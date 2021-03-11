@@ -7,17 +7,17 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from "@angular/common/http";
 import { map } from 'rxjs/operators';
+import { ConfigService } from '../config/config.service';
 
 @Injectable()
 export class SecuritiesServices {
 
     localServer = 'http://localhost:5000';
-    awsServer = 'http://Enersoftccmbase-env.eba-2zv5czsw.us-east-1.elasticbeanstalk.com';
     server: string;
 
-    constructor(private http: HttpClient) {
-        this.server = this.awsServer;
-
+    constructor(private http: HttpClient, private config: ConfigService) {
+        this.server = this.config.getValues().restPathRoot;
+        console.log("SecuritiesServices is using " + this.server);
     }
 
     createSecurity(id: string, param1: string, param2: string, param3: string, param4: string, param5: string, param6: string, mandant: string): any {
