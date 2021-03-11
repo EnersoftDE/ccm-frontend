@@ -1,0 +1,4 @@
+{
+  "version": "docker-version",
+  "restPathRoot": "http://localhost:5000/"
+}
