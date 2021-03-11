@@ -20,4 +20,3 @@ https://medium.com/swlh/a-detailed-approach-of-setting-up-ckeditor-with-angular-
 
 installieren bei fehler
 npm install --save-dev @angular-devkit/build-angular
-okok

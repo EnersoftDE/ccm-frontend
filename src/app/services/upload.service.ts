@@ -19,7 +19,7 @@ export class UploadService {
 
   constructor(private httpClient: HttpClient, private config: ConfigService) {
     this.server = this.config.getValues().restPathRoot;
-    console.log("SecuritiesServices is using " + this.server);
+    console.log("UploadService is using " + this.server);
   }
 
 
