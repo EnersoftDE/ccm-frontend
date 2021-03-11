@@ -17,3 +17,6 @@ https://www.youtube.com/watch?v=v7X_ZHdcNvc
 
 CKEditor:
 https://medium.com/swlh/a-detailed-approach-of-setting-up-ckeditor-with-angular-e546610157ba
+
+installieren bei fehler
+npm install --save-dev @angular-devkit/build-angular
